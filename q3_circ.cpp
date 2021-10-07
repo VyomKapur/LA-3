@@ -1,8 +1,7 @@
 #include<iostream>
 using namespace std;
 
-struct node
-{
+struct node{
     int data;
     struct node* next;
 };
@@ -10,31 +9,31 @@ struct node* start = NULL;
 
 void insert(){
     struct node* new_node;
-    new_node = new node;
     node* ptr = start;
+    new_node = new node;
     int data;
     cout<<"Enter data to be inserted: ";
     cin>>data;
     new_node->data = data;
-    new_node->next = start;
     if(start==NULL){
         start = new_node;
+        new_node->next = start;
     }
     else{
         while(ptr->next!=start){
             ptr = ptr->next;
         }
         ptr->next = new_node;
+        new_node->next = start;
     }
 }
 void display(){
     node* ptr = start;
     cout<<"START->";
-    while(ptr->next!=start){
+    do{
         cout<<ptr->data<<"->";
         ptr = ptr->next;
-    }
-    cout<<"NULL";
+    }while(ptr!=start);
 }
 int findSize(){
     int ctr=0;
@@ -43,7 +42,7 @@ int findSize(){
     {   
         ctr++;
         ptr = ptr->next;
-    } while (ptr->next != start);
+    } while (ptr!= start);
     
     return ctr;
 }
